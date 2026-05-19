@@ -9,7 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'octofit-secret-key'
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+
+# Get CODESPACE_NAME from environment variable
+CODESPACE_NAME = os.getenv('CODESPACE_NAME', 'localhost')
+
+# Allow both localhost and codespace URLs
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', CODESPACE_NAME, f'{CODESPACE_NAME}-8000.app.github.dev', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
